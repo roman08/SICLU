@@ -1,0 +1,46 @@
+<loading *ngIf="isLoading">{{ isLoading }}</loading>
+
+<div class="container-fluid mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+      <h4 class="mb-0 text-white">Cargar Archivo Excel</h4>
+      <button type="button" (click)="back()" class="btn btn-light">
+        <i class="mdi mdi-arrow-left-bold"></i> Regresar
+      </button>
+    </div>
+
+    <div class="card-body">
+      <div class="mb-3">
+        <input type="file" class="form-control" (change)="onFileChange($event)" accept=".xls,.xlsx" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-lg">
+    <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">Vista previa de los datos</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th *ngFor="let header of expectedHeaders" class="text-nowrap">
+                {{ header }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of previewData">
+              <td *ngFor="let header of expectedHeaders; let i = index">{{ row[i+1] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="btn btn-success w-100 mt-3" (click)="sendToApi()" *ngIf="previewData.length > 0">
+        <i class="bi bi-file-earmark-pdf"></i> Generar PDF
+      </button>
+    </div>
+  </div>
+</div>

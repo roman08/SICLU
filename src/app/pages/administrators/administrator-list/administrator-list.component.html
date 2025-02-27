@@ -1,0 +1,49 @@
+<loading *ngIf="isLoading">{{ isLoading }}</loading>
+<div class="row">
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title" style="text-align: end;"><a class="btn btn-primary"
+            [routerLink]="['/dashboard/upload-pdf']"><i class="mdi mdi-plus"></i> Cargar registos</a></h4>
+
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre del cliente</th>
+                <th>RFC</th>
+                <th>Total a pagar</th>
+                <th>Concepto</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let invoice of invoices | paginate: { itemsPerPage: 100, currentPage: p }">
+                <td>{{ invoice.uuid }}</td>
+                <td>{{ invoice.customer_name }}</td>
+                <td>{{ invoice.rfc }}</td>
+                <td>{{ invoice.total_amount }}</td>
+                <td>{{ invoice.concept }}</td>
+                <td>{{ invoice.description }}</td>
+                <td class="actions">
+                  <!-- <a  href="#"><i class="mdi mdi-eye"></i></a> -->
+                  <a><i class="mdi mdi-delete"></i></a>
+                </td>
+              </tr>
+
+
+
+
+
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

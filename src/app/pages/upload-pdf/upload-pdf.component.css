@@ -1,0 +1,5 @@
+th {
+  white-space: nowrap; /* Evita que el texto se corte */
+  min-width: max-content; /* Ajusta el ancho al contenido */
+  padding: 8px 12px; /* Espaciado interno */
+}
